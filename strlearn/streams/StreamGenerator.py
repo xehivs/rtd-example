@@ -20,14 +20,14 @@ class StreamGenerator:
     :param weights: If array - class weight for static imbalance, if 3-valued tuple - (n_drifts, concept_sigmoid_spacing, IR amplitude [0-1]) for generation of continous dynamically imbalanced streams, if 2-valued tuple - (mean value, standard deviation) for generation of discreete dynamically imbalanced streams.
 
     :type n_chunks: integer, optional (default=250)
-    :type chunk_size : integer, optional (default=200)
-    :type random_state : integer, optional (default=1410)
-    :type n_drifts : integer, optional (default=4)
-    :type concept_sigmoid_spacing : float, optional (default=10.)
-    :type n_classes : integer, optional (default=2)
+    :type chunk_size: integer, optional (default=200)
+    :type random_state: integer, optional (default=1410)
+    :type n_drifts: integer, optional (default=4)
+    :type concept_sigmoid_spacing: float, optional (default=10.)
+    :type n_classes: integer, optional (default=2)
     :type y_flip: float or tuple (default=0.01)
-    :type recurring : boolean, optional (default=False)
-    :type weights : array-like, shape (n_classes, ) or tuple (only for 2 classes)
+    :type recurring: boolean, optional (default=False)
+    :type weights: array-like, shape (n_classes, ) or tuple (only for 2 classes)
 
     :Example:
 
