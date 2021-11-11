@@ -23,6 +23,8 @@ extensions = [
     'numpydoc',
 ]
 
+bibtex_bibfiles = ['references_ensembles.bib', 'references_evaluators.bib']
+
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
     'sphinx': ('https://www.sphinx-doc.org/en/master/', None),
