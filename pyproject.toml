@@ -1,8 +1,0 @@
-[build-system]
-requires = ["flit_core >=3.2,<4"]
-build-backend = "flit_core.buildapi"
-
-[project]
-name = "strlearn"
-authors = [{name = "P. Ksieniewicz, P. Zyblewski", email = "kssk@pwr.edu.pl"}]
-dynamic = ["version", "description"]
