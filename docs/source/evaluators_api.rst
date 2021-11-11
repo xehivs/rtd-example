@@ -6,6 +6,7 @@ Evaluators module
 
 .. autosummary::
   Prequential
+	TestThenTrain
 
 .. automodule:: strlearn.evaluators
   :members:
