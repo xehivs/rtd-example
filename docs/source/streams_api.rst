@@ -6,6 +6,7 @@ Streams module
 
 .. autosummary::
   StreamGenerator
+  ARFFParser
 
 .. automodule:: strlearn.streams
   :members:
