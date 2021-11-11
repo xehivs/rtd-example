@@ -2,9 +2,14 @@
 API
 ###
 
-simpleble module
-================
+Streams module
+==============
 
 .. automodule:: strlearn.streams
-    :members:
-    :show-inheritance:
+  :members:
+  :show-inheritance:
+
+.. currentmodule:: strlearn.streams
+
+.. autosummary::
+  StreamGenerator
