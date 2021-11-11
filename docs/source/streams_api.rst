@@ -8,6 +8,7 @@ Streams module
   StreamGenerator
   ARFFParser
   CSVParser
+  NPYParser
 
 .. automodule:: strlearn.streams
   :members:
