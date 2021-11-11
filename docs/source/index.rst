@@ -14,17 +14,20 @@ Welcome to stream-learn documentation!
    :hidden:
    :caption: User guide
 
-   streams
-   evaluators
-   ensembles
-   classifiers
+   streams_guide
+   evaluators_guide
+   ensembles_guide
+   classifiers_guide
 
 .. toctree::
    :maxdepth: 2
    :hidden:
    :caption: Documentation
 
-   api
+   streams_api
+   evaluators_api
+   ensembles_api
+   classifiers_api
 
 .. toctree::
    :maxdepth: 2
