@@ -15,4 +15,3 @@ API
    :toctree: generated/
 
    streams.StreamGenerator
-   streams.ARFFParser
