@@ -6,6 +6,7 @@ Classifiers module
 
 .. autosummary::
   ASC
+  SampleWeightedMetaEstimator
 
 .. automodule:: strlearn.classifiers
   :members:
