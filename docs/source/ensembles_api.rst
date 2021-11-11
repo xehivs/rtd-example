@@ -19,6 +19,6 @@ Ensembles module
 	UOB
 	WAE
 
-.. automodule:: strlearn.evaluators
+.. automodule:: strlearn.ensembles
   :members:
   :show-inheritance:
