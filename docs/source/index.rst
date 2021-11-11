@@ -25,7 +25,6 @@ Welcome to stream-learn documentation!
    :caption: Documentation
 
    api
-   auto_examples/index
 
 .. toctree::
    :maxdepth: 2

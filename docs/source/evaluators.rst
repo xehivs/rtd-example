@@ -260,6 +260,6 @@ G-mean is denoted as the squared root of the product of the recall and precision
 
 References
 ----------
-.. bibliography:: ../references_evaluators.bib
+.. bibliography:: references_evaluators.bib
   :list: enumerated
   :all:
