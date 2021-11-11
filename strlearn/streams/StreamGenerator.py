@@ -316,7 +316,6 @@ class StreamGenerator:
           - seealso using ``.. seealso:: text``
           - notes using ``.. note:: text``
           - warning using ``.. warning:: text``
-          - todo ``.. todo:: text``
 
         **Advantages**:
          - Uses sphinx markups, which will certainly be improved in future
@@ -348,7 +347,6 @@ class StreamGenerator:
             important feature
         .. seealso:: :class:`MainClass2`
         .. warning:: arg2 must be non-zero.
-        .. todo:: check that arg2 is non zero.
         """
         self.previous_chunk = None
         self.chunk_id = -1

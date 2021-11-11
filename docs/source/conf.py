@@ -19,8 +19,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
-    "sphinxcontrib.bibtex",
-    'numpydoc',
+    "sphinxcontrib.bibtex"
 ]
 
 bibtex_bibfiles = ['references_ensembles.bib', 'references_evaluators.bib']
