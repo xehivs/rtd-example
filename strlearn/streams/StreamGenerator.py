@@ -439,12 +439,24 @@ class StreamGenerator:
         self.reset()
 
     def save_to_npy(self, filepath):
+        """
+        Save generated stream to the numpy format file.
+
+        :param filepath: Path to the file where data will be saved in numpy format.
+        :type filepath: string
+        """
         X, y = self._make_classification()
         ds = np.concatenate([X, y[:, np.newaxis]], axis=1)
         np.save(filepath, ds)
 
 
     def save_to_csv(self, filepath):
+        """
+        Save generated stream to the csv format file.
+
+        :param filepath: Path to the file where data will be saved in csv format.
+        :type filepath: string
+        """
         X, y = self._make_classification()
 
         ds = np.concatenate([X, y[:, np.newaxis]], axis=1)

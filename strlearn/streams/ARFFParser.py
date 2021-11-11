@@ -5,59 +5,32 @@ ATYPES = ("nominal", "numeric")
 
 
 class ARFFParser:
-    """This class docstring shows how to use sphinx and rst syntax
+    """ Stream-aware parser of datasets in ARFF format.
 
-    The first line is brief explanation, which may be completed with
-    a longer one. For instance to discuss about its methods. The only
-    method here is :func:`function1`'s. The main idea is to document
-    the class and methods's arguments with
+    :type path: string
+    :param path: Path to the ARFF file.
+    :type chunk_size: integer, optional (default=200)
+    :param chunk_size: The number of instances in each data chunk.
+    :type n_chunks: integer, optional (default=250)
+    :param n_chunks: The number of data chunks, that the stream is composed of.
 
-    - **parameters**, **types**, **return** and **return types**::
+    :Example:
 
-          :param arg1: description
-          :param arg2: description
-          :type arg1: type description
-          :type arg1: type description
-          :return: return description
-          :rtype: the return type description
-
-    - and to provide sections such as **Example** using the double commas syntax::
-
-          :Example:
-
-          followed by a blank line !
-
-      which appears as follow:
-
-      :Example:
-
-      followed by a blank line
-
-    - Finally special sections such as **See Also**, **Warnings**, **Notes**
-      use the sphinx syntax (*paragraph directives*)::
-
-          .. seealso:: blabla
-          .. warnings also:: blabla
-          .. note:: blabla
-          .. todo:: blabla
-
-    .. note::
-        There are many other Info fields but they may be redundant:
-            * param, parameter, arg, argument, key, keyword: Description of a
-              parameter.
-            * type: Type of a parameter.
-            * raises, raise, except, exception: That (and when) a specific
-              exception is raised.
-            * var, ivar, cvar: Description of a variable.
-            * returns, return: Description of the return value.
-            * rtype: Return type.
-
-    .. note::
-        There are many other directives such as versionadded, versionchanged,
-        rubric, centered, ... See the sphinx documentation for more details.
-
-    Here below is the results of the :func:`function1` docstring.
-
+    >>> import strlearn as sl
+    >>> stream = sl.streams.ARFFParser("Agrawal.arff")
+    >>> clf = sl.classifiers.AccumulatedSamplesClassifier()
+    >>> evaluator = sl.evaluators.PrequentialEvaluator()
+    >>> evaluator.process(clf, stream)
+    >>> stream.reset()
+    >>> print(evaluator.scores_)
+    ...
+    [[0.855      0.80815508 0.79478582 0.80815508 0.89679715]
+    [0.795      0.75827674 0.7426779  0.75827674 0.84644195]
+    [0.8        0.75313899 0.73559983 0.75313899 0.85507246]
+    ...
+    [0.885      0.86181169 0.85534199 0.86181169 0.91119691]
+    [0.895      0.86935764 0.86452058 0.86935764 0.92134831]
+    [0.87       0.85104088 0.84813907 0.85104088 0.9       ]]
     """
     def __init__(self, path, chunk_size=200, n_chunks=250):
         # Read file.
@@ -124,12 +97,26 @@ class ARFFParser:
         return self.name
 
     def is_dry(self):
+        """
+        Checking if we have reached the end of the stream.
+
+        :returns: flag showing if the stream has ended
+        :rtype: boolean
+        """
 
         return (
             self.chunk_id + 1 >= self.n_chunks if hasattr(self, "chunk_id") else False
         )
 
     def get_chunk(self):
+        """
+        Generating a data chunk of a stream.
+
+        Used by all evaluators but also accesible for custom evaluation.
+
+        :returns: Generated samples and target values.
+        :rtype: tuple {array-like, shape (n_samples, n_features), array-like, shape (n_samples, )}
+        """
         if self.chunk_id == 0 and self.starting_chunk is False:
             self.previous_chunk = None
             self.chunk_id = -1
@@ -177,6 +164,7 @@ class ARFFParser:
         return self.current_chunk
 
     def reset(self):
+        "Reset processed stream and close ARFF file."
         self.is_dry_ = False
         self.chunk_id = 0
         self._f.close()
