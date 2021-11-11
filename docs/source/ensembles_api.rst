@@ -9,8 +9,8 @@ Ensembles module
 	AWE
 	DWM
 	KMC
-	learnppCDS
-	learnppNIE
+	LearnppCDS
+	LearnppNIE
 	OnlineBagging
 	OOB
 	OUSE
