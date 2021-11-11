@@ -2,16 +2,10 @@
 API
 ###
 
-:mod:`strlearn.streams`
-=======================
+simpleble module
+================
 
 .. automodule:: strlearn.streams
-    :no-members:
-    :no-inherited-members:
-
-.. currentmodule:: strlearn
-
-.. autosummary::
-   :toctree: generated/
-
-   streams.StreamGenerator
+    :members:
+    :undoc-members:
+    :show-inheritance:
