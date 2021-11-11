@@ -9,21 +9,15 @@ class StreamGenerator:
 
     A key element of the ``stream-learn`` package is a generator that allows to prepare a replicable (according to the given ``random_state`` value) classification dataset with class distribution changing over the course of stream, with base concepts build on a default class distributions for the ``scikit-learn`` package from the ``make_classification()`` function. These types of distributions try to reproduce the rules for generating the ``Madelon`` set. The ``StreamGenerator`` is capable of preparing any variation of the data stream known in the general taxonomy of data streams.
 
-    :param n_chunks: The number of data chunks, that the stream
-        is composed of.
+    :param n_chunks: The number of data chunks, that the stream is composed of.
     :param chunk_size: The number of instances in each data chunk.
     :param random_state: The seed used by the random number generator.
     :param n_drifts: The number of concept changes in the data stream.
-    :param concept_sigmoid_spacing: Value that determines the shape of sigmoid function and
-        how sudden is the change of concept. The higher the value,
-        the more sudden the drift is.
+    :param concept_sigmoid_spacing: Value that determines the shape of sigmoid function and how sudden is the change of concept. The higher the value, the more sudden the drift is.
     :param n_classes: The number of classes in the generated data stream.
     :param y_flip: Label noise for whole dataset or separate classes.
-    :param recurring: Determines if the streams can go back to
-        the previously encountered concepts.
-    :param weights: If array - class weight for static imbalance,
-        if 3-valued tuple - (n_drifts, concept_sigmoid_spacing, IR amplitude
-        [0-1]) for generation of continous dynamically imbalanced streams, if 2-valued tuple - (mean value, standard deviation) for generation of discreete dynamically imbalanced streams.
+    :param recurring: Determines if the streams can go back to the previously encountered concepts.
+    :param weights: If array - class weight for static imbalance, if 3-valued tuple - (n_drifts, concept_sigmoid_spacing, IR amplitude [0-1]) for generation of continous dynamically imbalanced streams, if 2-valued tuple - (mean value, standard deviation) for generation of discreete dynamically imbalanced streams.
 
     :type n_chunks: integer, optional (default=250)
     :type chunk_size : integer, optional (default=200)
@@ -34,7 +28,6 @@ class StreamGenerator:
     :type y_flip: float or tuple (default=0.01)
     :type recurring : boolean, optional (default=False)
     :type weights : array-like, shape (n_classes, ) or tuple (only for 2 classes)
-
 
     :Example:
 
