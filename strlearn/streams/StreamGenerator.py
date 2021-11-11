@@ -7,19 +7,34 @@ import pandas as pd
 class StreamGenerator:
     """ Data streams generator for both stationary and drifting data streams.
 
-    The first line is brief explanation, which may be completed with
-    a longer one. For instance to discuss about its methods. The only
-    method here is :func:`function1`'s. The main idea is to document
-    the class and methods's arguments with
-
+    A key element of the ``stream-learn`` package is a generator that allows to prepare a replicable (according to the given ``random_state`` value) classification dataset with class distribution changing over the course of stream, with base concepts build on a default class distributions for the ``scikit-learn`` package from the ``make_classification()`` function. These types of distributions try to reproduce the rules for generating the ``Madelon`` set. The ``StreamGenerator`` is capable of preparing any variation of the data stream known in the general taxonomy of data streams.
 
     :param n_chunks: The number of data chunks, that the stream
         is composed of.
-    :param arg2: the first value
-    :param arg3: the first value
+    :param chunk_size: The number of instances in each data chunk.
+    :param random_state: The seed used by the random number generator.
+    :param n_drifts: The number of concept changes in the data stream.
+    :param concept_sigmoid_spacing: Value that determines the shape of sigmoid function and
+        how sudden is the change of concept. The higher the value,
+        the more sudden the drift is.
+    :param n_classes: The number of classes in the generated data stream.
+    :param y_flip: Label noise for whole dataset or separate classes.
+    :param recurring: Determines if the streams can go back to
+        the previously encountered concepts.
+    :param weights: If array - class weight for static imbalance,
+        if 3-valued tuple - (n_drifts, concept_sigmoid_spacing, IR amplitude
+        [0-1]) for generation of continous dynamically imbalanced streams, if 2-valued tuple - (mean value, standard deviation) for generation of discreete dynamically imbalanced streams.
+
     :type n_chunks: integer, optional (default=250)
-    :type arg2: int, float,...
-    :type arg3: int, float,...
+    :type chunk_size : integer, optional (default=200)
+    :type random_state : integer, optional (default=1410)
+    :type n_drifts : integer, optional (default=4)
+    :type concept_sigmoid_spacing : float, optional (default=10.)
+    :type n_classes : integer, optional (default=2)
+    :type y_flip: float or tuple (default=0.01)
+    :type recurring : boolean, optional (default=False)
+    :type weights : array-like, shape (n_classes, ) or tuple (only for 2 classes)
+
 
     :Example:
 
@@ -29,7 +44,6 @@ class StreamGenerator:
     >>> evaluator = sl.evaluators.PrequentialEvaluator()
     >>> evaluator.process(clf, stream)
     >>> print(evaluator.scores_)
-
     [[0.955      0.93655817 0.93601827 0.93655817 0.97142857]
      [0.94       0.91397849 0.91275313 0.91397849 0.96129032]
      [0.9        0.85565271 0.85234488 0.85565271 0.93670886]
