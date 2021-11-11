@@ -13,7 +13,6 @@ API
 
 .. autosummary::
    :toctree: generated/
-   :template: class.rst
 
    streams.StreamGenerator
    streams.ARFFParser
