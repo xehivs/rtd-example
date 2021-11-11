@@ -15,7 +15,7 @@ Streams module
   :show-inheritance:
 
 Classifiers module
-==============
+==================
 
 .. currentmodule:: strlearn.classifiers
 
