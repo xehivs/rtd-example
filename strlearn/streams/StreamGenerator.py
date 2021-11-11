@@ -107,7 +107,6 @@ class StreamGenerator:
         self.n_clusters_per_class = n_clusters_per_class
 
     def is_dry(self):
-        """Checking if we have reached the end of the stream."""
 
         return (
             self.chunk_id + 1 >= self.n_chunks if hasattr(self, "chunk_id") else False
@@ -316,15 +315,6 @@ class StreamGenerator:
         self.chunk_id = -1
 
     def get_chunk(self):
-        """
-        Generating a data chunk of a stream.
-
-        Returns
-        -------
-        current_chunk : tuple {array-like, shape (n_samples, n_features),
-        array-like, shape (n_samples, )}
-            Generated samples and target values.
-        """
         if hasattr(self, "X"):
             self.previous_chunk = self.current_chunk
         else:
@@ -429,13 +419,6 @@ class StreamGenerator:
             )
 
     def save_to_arff(self, filepath):
-        """ Save generated stream to the ARFF format file.
-
-        Parameters
-        ----------
-        filepath : string
-            Path to the file where data will be saved in ARFF format
-        """
         X_array = []
         y_array = []
 
@@ -468,26 +451,12 @@ class StreamGenerator:
         self.reset()
 
     def save_to_npy(self, filepath):
-        """ Save generated stream to the ARFF format file.
-
-        Parameters
-        ----------
-        filepath : string
-            Path to the file where data will be saved in ARFF format
-        """
         X, y = self._make_classification()
         ds = np.concatenate([X, y[:, np.newaxis]], axis=1)
         np.save(filepath, ds)
 
 
     def save_to_csv(self, filepath):
-        """ Save generated stream to the ARFF format file.
-
-        Parameters
-        ----------
-        filepath : string
-            Path to the file where data will be saved in ARFF format
-        """
         X, y = self._make_classification()
 
         ds = np.concatenate([X, y[:, np.newaxis]], axis=1)
