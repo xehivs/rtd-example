@@ -5,37 +5,59 @@ from sklearn.datasets import make_classification
 import pandas as pd
 
 class StreamGenerator:
-    """This is a conceptual class representation of a simple BLE device
-    (GATT Server). It is essentially an extended combination of the
-    :class:`bluepy.btle.Peripheral` and :class:`bluepy.btle.ScanEntry` classes
+    """This class docstring shows how to use sphinx and rst syntax
 
-    :param client: A handle to the :class:`simpleble.SimpleBleClient` client
-        object that detected the device
-    :type client: class:`simpleble.SimpleBleClient`
-    :param addr: Device MAC address, defaults to None
-    :type addr: str, optional
-    :param addrType: Device address type - one of ADDR_TYPE_PUBLIC or
-        ADDR_TYPE_RANDOM, defaults to ADDR_TYPE_PUBLIC
-    :type addrType: str, optional
-    :param iface: Bluetooth interface number (0 = /dev/hci0) used for the
-        connection, defaults to 0
-    :type iface: int, optional
-    :param data: A list of tuples (adtype, description, value) containing the
-        AD type code, human-readable description and value for all available
-        advertising data items, defaults to None
-    :type data: list, optional
-    :param rssi: Received Signal Strength Indication for the last received
-        broadcast from the device. This is an integer value measured in dB,
-        where 0 dB is the maximum (theoretical) signal strength, and more
-        negative numbers indicate a weaker signal, defaults to 0
-    :type rssi: int, optional
-    :param connectable: `True` if the device supports connections, and `False`
-        otherwise (typically used for advertising ‘beacons’).,
-        defaults to `False`
-    :type connectable: bool, optional
-    :param updateCount: Integer count of the number of advertising packets
-        received from the device so far, defaults to 0
-    :type updateCount: int, optional
+    The first line is brief explanation, which may be completed with
+    a longer one. For instance to discuss about its methods. The only
+    method here is :func:`function1`'s. The main idea is to document
+    the class and methods's arguments with
+
+    - **parameters**, **types**, **return** and **return types**::
+
+          :param arg1: description
+          :param arg2: description
+          :type arg1: type description
+          :type arg1: type description
+          :return: return description
+          :rtype: the return type description
+
+    - and to provide sections such as **Example** using the double commas syntax::
+
+          :Example:
+
+          followed by a blank line !
+
+      which appears as follow:
+
+      :Example:
+
+      followed by a blank line
+
+    - Finally special sections such as **See Also**, **Warnings**, **Notes**
+      use the sphinx syntax (*paragraph directives*)::
+
+          .. seealso:: blabla
+          .. warnings also:: blabla
+          .. note:: blabla
+          .. todo:: blabla
+
+    .. note::
+        There are many other Info fields but they may be redundant:
+            * param, parameter, arg, argument, key, keyword: Description of a
+              parameter.
+            * type: Type of a parameter.
+            * raises, raise, except, exception: That (and when) a specific
+              exception is raised.
+            * var, ivar, cvar: Description of a variable.
+            * returns, return: Description of the return value.
+            * rtype: Return type.
+
+    .. note::
+        There are many other directives such as versionadded, versionchanged,
+        rubric, centered, ... See the sphinx documentation for more details.
+
+    Here below is the results of the :func:`function1` docstring.
+
     """
 
     def __init__(
@@ -57,7 +79,8 @@ class StreamGenerator:
         y_flip=0.01,
         **kwargs,
     ):
-        # Wyższy spacing, bardziej nagły
+        """Constructor method
+        """
         self.n_chunks = n_chunks
         self.chunk_size = chunk_size
         self.random_state = random_state
@@ -282,19 +305,6 @@ class StreamGenerator:
         self.chunk_id = -1
 
     def get_chunk(self):
-        """Returns a list of :class:`bluepy.blte.Service` objects representing
-        the services offered by the device. This will perform Bluetooth service
-        discovery if this has not already been done; otherwise it will return a
-        cached list of services immediately..
-
-        :param uuids: A list of string service UUIDs to be discovered,
-            defaults to None
-        :type uuids: list, optional
-        :return: A list of the discovered :class:`bluepy.blte.Service` objects,
-            which match the provided ``uuids``
-        :rtype: list On Python 3.x, this returns a dictionary view object,
-            not a list
-        """
         if hasattr(self, "X"):
             self.previous_chunk = self.current_chunk
         else:
