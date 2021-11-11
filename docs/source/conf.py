@@ -2,12 +2,14 @@
 
 # -- Project information
 
-project = 'Lumache'
-copyright = '2021, Graziella'
-author = 'Graziella'
+from strlearn import __version__
 
-release = '0.1'
-version = '0.1.0'
+project = 'stream-learn'
+copyright = u"2019, P. Ksieniewicz, P. Zyblewski"
+author = u"P. Ksieniewicz, P. Zyblewski"
+
+release = __version__
+version = __version__
 
 # -- General configuration
 
