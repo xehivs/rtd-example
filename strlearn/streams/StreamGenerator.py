@@ -5,12 +5,34 @@ from sklearn.datasets import make_classification
 import pandas as pd
 
 class StreamGenerator:
-    """This class docstring shows how to use sphinx and rst syntax
+    """ Data streams generator for both stationary and drifting data streams.
 
     The first line is brief explanation, which may be completed with
     a longer one. For instance to discuss about its methods. The only
     method here is :func:`function1`'s. The main idea is to document
     the class and methods's arguments with
+
+
+    :param arg1: the first value
+    :param arg2: the first value
+    :param arg3: the first value
+    :type arg1: int, float,...
+    :type arg2: int, float,...
+    :type arg3: int, float,...
+    :returns: arg1/arg2 +arg3
+    :rtype: int, float
+
+    :Example:
+
+    >>> import template
+    >>> a = template.MainClass1()
+    >>> a.function1(1,1,1)
+    2
+
+    .. note:: can be useful to emphasize
+        important feature
+    .. seealso:: :class:`MainClass2`
+    .. warning:: arg2 must be non-zero.
 
     - **parameters**, **types**, **return** and **return types**::
 
