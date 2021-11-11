@@ -1,9 +1,6 @@
-###############
-Classifiers API
-###############
-
+##################
 Classifiers module
-==================
+##################
 
 .. currentmodule:: strlearn.classifiers
 

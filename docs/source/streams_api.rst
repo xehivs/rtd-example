@@ -1,9 +1,6 @@
-###########
-Streams API
-###########
-
+##############
 Streams module
-==============
+##############
 
 .. currentmodule:: strlearn.streams
 
