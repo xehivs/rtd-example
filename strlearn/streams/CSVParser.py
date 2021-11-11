@@ -94,6 +94,6 @@ class CSVParser:
             return None
 
     def reset(self):
-        "Reset stream to the beginning.""
+        """Reset stream to the beginning."""
         self.previous_chunk = None
         self.chunk_id = -1
