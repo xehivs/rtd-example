@@ -1,9 +1,3 @@
-"""
-Data streams generator.
-
-A class for generating streams with various parameters.
-"""
-
 import numpy as np
 import pandas as pd
 from scipy.stats import logistic
@@ -11,60 +5,37 @@ from sklearn.datasets import make_classification
 import pandas as pd
 
 class StreamGenerator:
-    """ Data streams generator for both stationary and drifting data streams.
+    """This is a conceptual class representation of a simple BLE device
+    (GATT Server). It is essentially an extended combination of the
+    :class:`bluepy.btle.Peripheral` and :class:`bluepy.btle.ScanEntry` classes
 
-    Parameters
-    ----------
-
-    n_chunks : integer, optional (default=250)
-        The number of data chunks, that the stream
-        is composed of.
-    chunk_size : integer, optional (default=200)
-        The number of instances in each data chunk.
-    random_state : integer, optional (default=1410)
-        The seed used by the random number generator.
-    n_drifts : integer, optional (default=4)
-        The number of concept changes in the data stream.
-    concept_sigmoid_spacing : float, optional (default=10.)
-        Value that determines the shape of sigmoid function and
-        how sudden is the change of concept. The higher the value,
-        the more sudden the drift is.
-    n_classes : integer, optional (default=2)
-        The number of classes in the generated data stream.
-    y_flip: float or tuple (default=0.01)
-        Label noise for whole dataset or separate classes.
-    recurring : boolean, optional (default=False)
-        Determines if the streams can go back to
-        the previously encountered concepts.
-    weights : array-like, shape (n_classes, ) or tuple (only for 2 classes)
-        If array - class weight for static imbalance,
-        if 3-valued tuple - (n_drifts, concept_sigmoid_spacing, IR amplitude
-        [0-1]) for generation of continous dynamically imbalanced streams, if 2-valued tuple - (mean value, standard deviation) for generation of discreete dynamically imbalanced streams.
-
-    Attributes
-    ----------
-
-    Examples
-    --------
-
-    Examples:
-
-    Data stream with 2 gradual non-recurring drifts and 20% of minority class.::
-
-        >>> import strlearn as sl
-        >>> stream = sl.streams.StreamGenerator(n_drifts=2, weights=[0.2, 0.8], concept_sigmoid_spacing=5)
-        >>> clf = sl.classifiers.AccumulatedSamplesClassifier()
-        >>> evaluator = sl.evaluators.PrequentialEvaluator()
-        >>> evaluator.process(clf, stream)
-        >>> print(evaluator.scores_)
-
-        [[0.955      0.93655817 0.93601827 0.93655817 0.97142857]
-         [0.94       0.91397849 0.91275313 0.91397849 0.96129032]
-         [0.9        0.85565271 0.85234488 0.85565271 0.93670886]
-         ...
-         [0.815      0.72584133 0.70447376 0.72584133 0.8802589 ]
-         [0.83       0.69522145 0.65223303 0.69522145 0.89570552]
-         [0.845      0.67267706 0.61257135 0.67267706 0.90855457]]
+    :param client: A handle to the :class:`simpleble.SimpleBleClient` client
+        object that detected the device
+    :type client: class:`simpleble.SimpleBleClient`
+    :param addr: Device MAC address, defaults to None
+    :type addr: str, optional
+    :param addrType: Device address type - one of ADDR_TYPE_PUBLIC or
+        ADDR_TYPE_RANDOM, defaults to ADDR_TYPE_PUBLIC
+    :type addrType: str, optional
+    :param iface: Bluetooth interface number (0 = /dev/hci0) used for the
+        connection, defaults to 0
+    :type iface: int, optional
+    :param data: A list of tuples (adtype, description, value) containing the
+        AD type code, human-readable description and value for all available
+        advertising data items, defaults to None
+    :type data: list, optional
+    :param rssi: Received Signal Strength Indication for the last received
+        broadcast from the device. This is an integer value measured in dB,
+        where 0 dB is the maximum (theoretical) signal strength, and more
+        negative numbers indicate a weaker signal, defaults to 0
+    :type rssi: int, optional
+    :param connectable: `True` if the device supports connections, and `False`
+        otherwise (typically used for advertising ‘beacons’).,
+        defaults to `False`
+    :type connectable: bool, optional
+    :param updateCount: Integer count of the number of advertising packets
+        received from the device so far, defaults to 0
+    :type updateCount: int, optional
     """
 
     def __init__(
@@ -113,10 +84,6 @@ class StreamGenerator:
         )
 
     def _sigmoid(self, sigmoid_spacing, n_drifts):
-        """
-        Funkcja, która generuje okresowy sigmoid zgodnie z wymaganiami.
-        """
-
         period = (
             int((self.n_samples) / (n_drifts)) if n_drifts > 0 else int(self.n_samples)
         )
