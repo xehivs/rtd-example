@@ -2,8 +2,8 @@
 API
 ###
 
-:mod:`strlearn.streams`: Streams
-================================
+:mod:`strlearn.streams`
+=======================
 
 .. automodule:: strlearn.streams
     :no-members:

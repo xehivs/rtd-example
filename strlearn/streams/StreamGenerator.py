@@ -282,6 +282,19 @@ class StreamGenerator:
         self.chunk_id = -1
 
     def get_chunk(self):
+        """Returns a list of :class:`bluepy.blte.Service` objects representing
+        the services offered by the device. This will perform Bluetooth service
+        discovery if this has not already been done; otherwise it will return a
+        cached list of services immediately..
+
+        :param uuids: A list of string service UUIDs to be discovered,
+            defaults to None
+        :type uuids: list, optional
+        :return: A list of the discovered :class:`bluepy.blte.Service` objects,
+            which match the provided ``uuids``
+        :rtype: list On Python 3.x, this returns a dictionary view object,
+            not a list
+        """
         if hasattr(self, "X"):
             self.previous_chunk = self.current_chunk
         else:
