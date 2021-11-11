@@ -44,58 +44,6 @@ class StreamGenerator:
      [0.815      0.72584133 0.70447376 0.72584133 0.8802589 ]
      [0.83       0.69522145 0.65223303 0.69522145 0.89570552]
      [0.845      0.67267706 0.61257135 0.67267706 0.90855457]]
-
-    .. note:: can be useful to emphasize
-        important feature
-    .. seealso:: :class:`MainClass2`
-    .. warning:: arg2 must be non-zero.
-
-    - **parameters**, **types**, **return** and **return types**::
-
-          :param arg1: description
-          :param arg2: description
-          :type arg1: type description
-          :type arg1: type description
-          :return: return description
-          :rtype: the return type description
-
-    - and to provide sections such as **Example** using the double commas syntax::
-
-          :Example:
-
-          followed by a blank line !
-
-      which appears as follow:
-
-      :Example:
-
-      followed by a blank line
-
-    - Finally special sections such as **See Also**, **Warnings**, **Notes**
-      use the sphinx syntax (*paragraph directives*)::
-
-          .. seealso:: blabla
-          .. warnings also:: blabla
-          .. note:: blabla
-          .. todo:: blabla
-
-    .. note::
-        There are many other Info fields but they may be redundant:
-            * param, parameter, arg, argument, key, keyword: Description of a
-              parameter.
-            * type: Type of a parameter.
-            * raises, raise, except, exception: That (and when) a specific
-              exception is raised.
-            * var, ivar, cvar: Description of a variable.
-            * returns, return: Description of the return value.
-            * rtype: Return type.
-
-    .. note::
-        There are many other directives such as versionadded, versionchanged,
-        rubric, centered, ... See the sphinx documentation for more details.
-
-    Here below is the results of the :func:`function1` docstring.
-
     """
 
     def __init__(
@@ -117,8 +65,6 @@ class StreamGenerator:
         y_flip=0.01,
         **kwargs,
     ):
-        """Constructor method
-        """
         self.n_chunks = n_chunks
         self.chunk_size = chunk_size
         self.random_state = random_state
@@ -339,57 +285,18 @@ class StreamGenerator:
         return X, y
 
     def reset(self):
-        """returns (arg1 / arg2) + arg3
-
-        This is a longer explanation, which may include math with latex syntax
-        :math:`\\alpha`.
-        Then, you need to provide optional subsection in this order (just to be
-        consistent and have a uniform documentation. Nothing prevent you to
-        switch the order):
-
-          - parameters using ``:param <name>: <description>``
-          - type of the parameters ``:type <name>: <description>``
-          - returns using ``:returns: <description>``
-          - examples (doctest)
-          - seealso using ``.. seealso:: text``
-          - notes using ``.. note:: text``
-          - warning using ``.. warning:: text``
-
-        **Advantages**:
-         - Uses sphinx markups, which will certainly be improved in future
-           version
-         - Nice HTML output with the See Also, Note, Warnings directives
-
-
-        **Drawbacks**:
-         - Just looking at the docstring, the parameter, type and  return
-           sections do not appear nicely
-
-        :param arg1: the first value
-        :param arg2: the first value
-        :param arg3: the first value
-        :type arg1: int, float,...
-        :type arg2: int, float,...
-        :type arg3: int, float,...
-        :returns: arg1/arg2 +arg3
-        :rtype: int, float
-
-        :Example:
-
-        >>> import template
-        >>> a = template.MainClass1()
-        >>> a.function1(1,1,1)
-        2
-
-        .. note:: can be useful to emphasize
-            important feature
-        .. seealso:: :class:`MainClass2`
-        .. warning:: arg2 must be non-zero.
-        """
         self.previous_chunk = None
         self.chunk_id = -1
 
     def get_chunk(self):
+        """
+        Generating a data chunk of a stream.
+
+        Used by all evaluators but also accesible for custom evaluation.
+
+        :returns: Generated samples and target values.
+        :rtype: tuple {array-like, shape (n_samples, n_features), array-like, shape (n_samples, )}
+        """
         if hasattr(self, "X"):
             self.previous_chunk = self.current_chunk
         else:
