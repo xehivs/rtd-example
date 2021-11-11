@@ -47,7 +47,7 @@ API
    :toctree: generated/
    :template: class.rst
 
-   classifiers.AccumulatedSamplesClassifier
+   classifiers.ASC
    classifiers.SampleWeightedMetaEstimator
 
 :mod:`strlearn.ensembles`: Ensembles
