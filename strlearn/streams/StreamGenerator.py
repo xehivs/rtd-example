@@ -401,6 +401,12 @@ class StreamGenerator:
             )
 
     def save_to_arff(self, filepath):
+        """
+        Save generated stream to the ARFF format file.
+
+        :param filepath: Path to the file where data will be saved in ARFF format.
+        :type filepath: string
+        """
         X_array = []
         y_array = []
 
