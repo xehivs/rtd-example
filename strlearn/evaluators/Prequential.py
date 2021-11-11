@@ -18,11 +18,13 @@ class Prequential:
     that are currently in the window are used to test the classifier
     and then for training.
 
-    :ivar var1: initial value: par1
-    :ivar var2: initial value: par2
-
     :type metrics: tuple or function
     :param metrics: Tuple of metric functions or single metric function.
+
+    :var classes_: The class labels.
+    :var scores_: Values of metrics for each processed data chunk.
+    :vartype classes_: array-like, shape (n_classes, )
+    :vartype scores_: array-like, shape (stream.n_chunks, len(metrics))
 
     :Example:
 
